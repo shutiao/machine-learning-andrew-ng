@@ -7,5 +7,5 @@ import logging
 
 def compute_cost(X, y, theta):
     inner = np.power(((X * theta.T) - y), 2)
-    print('inner.shape', inner.shape)
+    #print('inner.shape', inner.shape)
     return np.sum(inner) / (2 * len(X))
