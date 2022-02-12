@@ -3,7 +3,6 @@
 # parameter for linea regression to fit the data points in X and y
 
 import numpy as np
-import logging
 
 def compute_cost(X, y, theta):
     inner = np.power(((X * theta.T) - y), 2)

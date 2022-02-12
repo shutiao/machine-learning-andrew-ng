@@ -59,6 +59,9 @@ alpha = 0.01
 
 theta, J_history = gradientDescent.gradientDescent(X, y, theta, alpha, iters)
 
+
+print('# ============= Part 4: Visualizing J(theta_0, theta_1) =============')
+
 #Plot the linear fit
 plotData.plotData(data, theta)
 

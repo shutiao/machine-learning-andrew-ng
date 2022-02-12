@@ -11,7 +11,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
     # Initialize some useful values
     update_theta = np.matrix(np.zeros(theta.shape))
     m = y.shape[0]; # number of training examples
-    J_history = np.zeros(num_iters)
+    J_history = np.zeros(num_iters) # initialize J_vals to a matrix of 0's
     num_params = int(theta.ravel().shape[1])
 
     for i in range(num_iters):
