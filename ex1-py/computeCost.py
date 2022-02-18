@@ -5,6 +5,5 @@
 import numpy as np
 
 def compute_cost(X, y, theta):
-    inner = np.power(((X * theta.T) - y), 2)
-    #print('inner.shape', inner.shape)
-    return np.sum(inner) / (2 * len(X))
+    costs = np.power(((X * theta.T) - y), 2)
+    return np.sum(costs) / (2 * len(X))
