@@ -76,4 +76,21 @@ print('Gradient at initial theta (zeros): \n')
 print(costFunction.gradient(initial_theta, X, y))
 print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 
+# %% ============= Part 3: Optimizing using SciPy's truncated newton  =============
 
+import scipy.optimize as opt
+theta,_,_ = opt.fmin_tnc(func=costFunction.costFunction, x0=initial_theta, fprime=costFunction.gradient, args=(X, y))
+print('Cost at optimzed theta:')
+print(costFunction.costFunction(theta, X, y))
+
+print('Cost at theta found by TNC: %f\n', costFunction.costFunction(theta, X, y))
+print('Expected cost (approx): 0.203\n')
+print('theta: ', theta)
+print('Expected theta (approx):\n');
+print(' -25.161\n 0.206\n 0.201\n');
+
+coef = -(theta / theta[2])
+x = np.arange(100)
+y = coef[0] + coef[1] * x
+plot.plot(x, y , label='Decision Boundary')
+plot.show()
