@@ -17,7 +17,10 @@ import pandas as pd
 import matplotlib.pyplot as plot
 
 import costFunction as costFunction
+import predict
+import sigmoid
 
+from sklearn.metrics import classification_report
 
 # %% Load Data
 # %  The first two columns contains the exam scores and the third column contains the label.
@@ -90,7 +93,34 @@ print('Expected theta (approx):\n');
 print(' -25.161\n 0.206\n 0.201\n');
 
 coef = -(theta / theta[2])
-x = np.arange(100)
-y = coef[0] + coef[1] * x
-plot.plot(x, y , label='Decision Boundary')
+x_ax = np.arange(100)
+y_ax = coef[0] + coef[1] * x_ax
+plot.plot(x_ax, y_ax , label='Decision Boundary')
 plot.show()
+
+# %% ============== Part 4: Predict and Accuracies ==============
+# %  After learning the parameters, you will like to use it to predict the outcomes
+# %  on unseen data. In this part, you will use the logistic regression model
+# %  to predict the probability that a student with score 45 on exam 1 and 
+# %  score 85 on exam 2 will be admitted.
+# %
+# %  Furthermore, you will compute the training and test set accuracies of 
+# %  our model.
+# %
+# %  Your task is to complete the code in predict.m
+
+# %  Predict probability for a student with score 45 on exam 1 
+# %  and score 85 on exam 2 
+
+prob = sigmoid.sigmoid(np.matrix([1, 45, 85]) * np.matrix(theta).T)
+print('For a student with scores 45 and 85, we predict an admission probability of ', prob)
+print('Expected value: 0.775 +/- 0.002\n\n')
+
+# % Compute accuracy on our training set
+y_pred = predict.predict(np.matrix(theta), np.matrix(X))
+print(y_pred)
+print(y)
+# print('Train Accuracy: %f\n', mean(double(p == y)) * 100)
+print('Expected accuracy (approx): 89.0\n')
+
+print(classification_report(y, y_pred))
