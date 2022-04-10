@@ -73,7 +73,7 @@ initial_theta = np.zeros(3)
 # % Compute and display initial cost and gradient
 print('Cost at initial theta (zeros): ')
 print(costFunction.costFunction(initial_theta, X, y))
-print('Expected cost (approx): 0.693');
+print('Expected cost (approx): 0.693')
 
 print('Gradient at initial theta (zeros): \n')
 print(costFunction.gradient(initial_theta, X, y))
@@ -89,8 +89,8 @@ print(costFunction.costFunction(theta, X, y))
 print('Cost at theta found by TNC: %f\n', costFunction.costFunction(theta, X, y))
 print('Expected cost (approx): 0.203\n')
 print('theta: ', theta)
-print('Expected theta (approx):\n');
-print(' -25.161\n 0.206\n 0.201\n');
+print('Expected theta (approx):\n')
+print(' -25.161\n 0.206\n 0.201\n')
 
 coef = -(theta / theta[2])
 x_ax = np.arange(100)
