@@ -81,20 +81,21 @@ data['predict'] = y_pred
 
 print('=============== distingush cat = 1 from cat = 2 =============== ') 
 
-non_setosa_mask = data['Name'] != 'Iris-setosa'
+#non_setosa_mask = data['Name'] != 'Iris-setosa'
+non_setosa_mask = data['predict'] != 0
 non_setosa_df = data[non_setosa_mask]
 print(non_setosa_df)
 
 
 X = non_setosa_df.iloc[:, [0,1,2,3,4]]
-print(X)
+#print(X)
 X = np.array(X.values)
-print(X)
+#print(X)
 
 y = non_setosa_df.iloc[:, [6]]
 # map 2 to 1
 y = np.array(y.replace(2, 0).values)
-print(y)
+#print(y)
 initial_theta = np.zeros(X.shape[1])
 
 theta2,_,_ = opt.fmin_tnc(func=costFunction.costFunction, x0=initial_theta, fprime=costFunction.gradient, args=(X, y))
@@ -106,12 +107,10 @@ print('theta2: ', theta2)
 prob2 = predict.predict(np.matrix(theta2), np.matrix([1, 7.0,3.2,4.7,1.4]))
 print('We expect it is larger than 0.5, ideal to be 1.0')
 #prob2 = sigmoid.sigmoid(np.matrix([1, 1.4]) * np.matrix(theta).T)
-print('For a versicolor data line, we predict an non-setosa probability of ', prob2)
 
 prob3 = predict.predict(np.matrix(theta2), np.matrix([1, 5.9,3.0,5.1,1.8]))
 print('We expect it is less than 0.5, ideal to be 0')
 #prob2 = sigmoid.sigmoid(np.matrix([1, 1.4]) * np.matrix(theta).T)
-print('For a versicolor data line, we predict an non-setosa probability of ', prob3)
 
 # % Compute accuracy on our training set
 y_pred = predict.predict(np.matrix(theta2), np.matrix(X))
@@ -121,6 +120,6 @@ print(classification_report(y, y_pred))
 # update column to data frame
 # A value is trying to be set on a copy of a slice from a DataFrame.
 # Try using .loc[row_indexer,col_indexer] = value instead
-#non_setosa_df.iloc[:, [7]] = [2 if x == 0 else x for x in y_pred]
-
-#print(data)
+data.loc[non_setosa_mask, 'predict'] = [2 if x == 0 else x for x in y_pred]
+print(data)
+print(classification_report(data['Cat'], data['predict']))
