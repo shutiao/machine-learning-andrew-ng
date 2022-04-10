@@ -7,5 +7,5 @@ def predict(theta, X):
 # %   threshold at 0.5 (i.e., if sigmoid(theta*x) >= 0.5, predict 1)
 
     prob = sigmoid.sigmoid(X * theta.T)
-    print(prob)
+    #print(prob)
     return [1 if x >= 0.5 else 0 for x in prob]
